@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12">
+    <app-fav-actors-edit></app-fav-actors-edit>
+    <hr>
+    <ul class="list-group">
+      <div class="col-xs-3">
+      <a
+        class="list-group-item actors"
+        style="cursor: pointer"
+        *ngFor="let actor of actors; let i = index"
+        (click)="onEditItem(i)"
+      >
+        {{ actor.name }} {{ actor.second_name}} {{ actor.surname }}
+      </a>
+      </div>
+    </ul>
+  </div>
+</div>

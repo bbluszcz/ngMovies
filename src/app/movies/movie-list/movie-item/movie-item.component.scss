@@ -1,0 +1,31 @@
+.movie {
+    &__title{
+        font-size: 25px;
+    }
+    &__year{
+        font-size: 15px;
+        color: gray;
+    }
+    &__genre{
+        margin: 0 2px;
+    }
+}
+.list-group-item{
+    position: relative;
+
+        .img-responsive{
+        height: 95%;
+        width: auto;
+        max-height: 150px;
+        max-width: 100px;
+        position: absolute;
+        overflow: hidden;
+        right: 1px;
+
+        top:1px;
+        }
+}
+
+  .container {
+        width: 95%;
+    }

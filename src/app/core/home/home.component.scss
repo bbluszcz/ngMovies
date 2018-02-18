@@ -1,0 +1,93 @@
+@mixin heading-font {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+$gray-800: #343a40 !default;
+$primary: #00ccff !default;
+
+body{
+    position: relative;
+    height: 100vh;
+}
+
+
+.parent{
+    text-align: center;
+    margin:0 auto;
+    .jumbotron {
+        font-size: 25px;
+        text-align: center;
+        margin:10% 10% 20px;
+            }
+    .btn {
+        width: 200px;
+        margin: 10px 50px;
+    }
+}
+
+
+// Styling for the footer
+footer {
+    margin-top: 15%;
+  padding: 25px 0;
+  text-align: center;
+  span.copyright {
+    font-size: 90%;
+    line-height: 40px;
+    text-transform: none;
+    @include heading-font;
+  }
+  ul.quicklinks {
+    font-size: 90%;
+    line-height: 40px;
+    margin-bottom: 0;
+    text-transform: none;
+    @include heading-font;
+  }
+  a {
+    font-size: 90%;
+    line-height: 40px;
+    color: $gray-800;
+    margin-bottom: 5px;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+        @include heading-font;
+
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+}
+
+ul.social-buttons {
+  margin-bottom: 0;
+  li {
+    a {
+      font-size: 20px;
+      line-height: 40px;
+      display: block;
+      width: 40px;
+      height: 40px;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+      color: white;
+      border-radius: 100%;
+      outline: none;
+      background-color: $gray-800;
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+}
+
+.phone{
+  @media  (min-width: 992px){ 
+    float: right;
+  }
+}

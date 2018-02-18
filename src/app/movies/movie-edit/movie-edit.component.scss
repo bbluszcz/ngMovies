@@ -1,0 +1,13 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.image-holder{
+  .img-responsive{
+    max-height: 450px;
+  margin: 0 auto;
+  display: block;
+    
+  }
+}

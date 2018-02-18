@@ -1,0 +1,41 @@
+
+<div class="row">
+  <div class="col-xs-12" >
+
+          <button class="btn btn-primary" (click)="onAddFavActorsToNewTab(idsOfActors)"> Add To Favourites </button>
+          <button class="btn btn-danger pull-right" (click)="onDeleteMovie()">Delete Movie</button>
+          <button class="btn btn-secondary pull-right" (click)="onEditMovie()">Edit Movie</button>
+
+  </div>
+</div>
+<hr>
+<div class="row">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>{{ movie.title }}</h1>
+      </div>
+    </div>
+    <br>
+  <div class="row">
+    <div class="col-xs-6">
+      {{ movie.plot }}
+    </div>
+    <img [src]="movie.imagePath" alt="{{ movie.name }}" class="img-responsive">
+  </div>
+<br>
+  <div class="row">
+    <div class="col-xs-4">
+      <ul class="list-group">
+        <li
+        style="cursor: pointer;"
+        class="list-group-item clearfix"
+        [ngClass]="{active : this.idsOfActors.indexOf(i) !== -1}"
+          (click)=passIndex(i)
+          *ngFor="let actor of movie.actors; let i=index;">
+          {{ actor.name }} {{ actor.second_name}} {{ actor.surname }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
