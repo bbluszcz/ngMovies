@@ -33,15 +33,7 @@ export class InputFilterPipe implements PipeTransform, OnDestroy {
 
   selectInputFilter(arraySearched, filter) {
     if (this.searchType === 3) {
-      const values = [];
-      for (const actor of arraySearched['actors']) {
-       values.push(actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1);
-        for (let i = 0; i < values.length; i++ ) {
-          if (values[i] === true) {
-            return (arraySearched['actors'][i]['surname'].toLocaleLowerCase().indexOf(filter) !== -1);
-          }
-        }
-      }
+      (arraySearched['actors'].some((actor) => actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1))
   } else if (this.searchType === 2) {
       return (arraySearched['director'].toLocaleLowerCase().indexOf(filter) !== -1);
     } else if (this.searchType === 1) {
@@ -49,10 +41,7 @@ export class InputFilterPipe implements PipeTransform, OnDestroy {
     } else {
       return  (arraySearched['title'].toLocaleLowerCase().indexOf(filter) !== -1) ||
       (arraySearched['director'].toLocaleLowerCase().indexOf(filter) !== -1) ||
-        (arraySearched['actors'][0]['surname'].toLocaleLowerCase().indexOf(filter) !== -1) ||
-        (arraySearched['actors'][1]['surname'].toLocaleLowerCase().indexOf(filter) !== -1) || 
-        (arraySearched['actors'][2]['surname'].toLocaleLowerCase().indexOf(filter) !== -1);
-        // (arraySearched['actors'][3]['surname'].toLocaleLowerCase().indexOf(filter) !== -1);
+        (arraySearched['actors'].some((actor)=> actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1))
   }
 }
 
