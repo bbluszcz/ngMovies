@@ -12,10 +12,10 @@ import { forEach } from '@angular/router/src/utils/collection';
   name: 'InputFilter'
 })
 
-export class InputFilterPipe implements PipeTransform, OnDestroy {
+export class InputFilterPipe implements PipeTransform {
 
   searchType: number;
-  private subscription: Subscription;
+  // private subscription: Subscription;
 
   constructor(private movieService: MovieService) {
     this.movieService.getSearchType().subscribe(
@@ -26,14 +26,14 @@ export class InputFilterPipe implements PipeTransform, OnDestroy {
   transform(value: any[], filter: string): any[] {
     filter = filter ? filter.toLocaleLowerCase() : null;
     return filter ? value.filter(
-      (arraySearched) =>
-        this.selectInputFilter(arraySearched, filter))
+      (arraySearched: any[]) =>
+        this.selectedFilter(arraySearched, filter))
          : value;
   }
 
-  selectInputFilter(arraySearched, filter) {
+  selectedFilter(arraySearched, filter) {
     if (this.searchType === 3) {
-      (arraySearched['actors'].some((actor) => actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1))
+      return (arraySearched['actors'].some((actor) => actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1));
   } else if (this.searchType === 2) {
       return (arraySearched['director'].toLocaleLowerCase().indexOf(filter) !== -1);
     } else if (this.searchType === 1) {
@@ -41,13 +41,13 @@ export class InputFilterPipe implements PipeTransform, OnDestroy {
     } else {
       return  (arraySearched['title'].toLocaleLowerCase().indexOf(filter) !== -1) ||
       (arraySearched['director'].toLocaleLowerCase().indexOf(filter) !== -1) ||
-        (arraySearched['actors'].some((actor)=> actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1))
+        (arraySearched['actors'].some((actor) => actor['surname'].toLocaleLowerCase().indexOf(filter) !== -1));
   }
 }
 
-  ngOnDestroy() {
-    // this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
 }
 

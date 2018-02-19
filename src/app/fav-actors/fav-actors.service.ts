@@ -19,11 +19,6 @@ export class FavActorsService {
     return this.favActors[index];
   }
 
-  addActor(actor: Actor) {
-    this.favActors.push(actor);
-    this.favActorsChanged.next(this.favActors.slice());
-  }
-
   addFavActors(actor: Actor) {
     this.favActors.push(actor);
     this.favActorsChanged.next(this.favActors.slice());
