@@ -34,7 +34,7 @@ export class FavActorsEditComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     const value = form.value;
-    const newActor = new Actor(value.name, value.surname );
+    const newActor = new Actor(value.name, value.surname, value.second_name );
     if (this.editMode) {
       this.favActorsService.updateActor(this.editedItemIndex, newActor);
     } else {
