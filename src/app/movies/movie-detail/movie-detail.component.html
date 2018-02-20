@@ -1,41 +1,51 @@
-
 <div class="row">
-  <div class="col-xs-12" >
-
-          <button class="btn btn-primary" (click)="onAddFavActorsToNewTab(idsOfActors)"> Add To Favourites </button>
-          <button class="btn btn-danger pull-right" (click)="onDeleteMovie()">Delete Movie</button>
-          <button class="btn btn-secondary pull-right" (click)="onEditMovie()">Edit Movie</button>
-
+  <div class="col-xs-12">
+    <button class="btn btn-danger pull-right" (click)="onDeleteMovie()">Delete Movie</button>
+    <button class="btn btn-secondary pull-right" (click)="onEditMovie()">Edit Movie</button>
   </div>
 </div>
-<hr>
-<div class="row">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>{{ movie.title }}</h1>
-      </div>
-    </div>
-    <br>
-  <div class="row">
-    <div class="col-xs-6">
-      {{ movie.plot }}
-    </div>
-    <img [src]="movie.imagePath" alt="{{ movie.name }}" class="img-responsive">
-  </div>
 <br>
-  <div class="row">
-    <div class="col-xs-4">
-      <ul class="list-group">
-        <li
-        style="cursor: pointer;"
-        class="list-group-item clearfix"
-        [ngClass]="{active : this.idsOfActors.indexOf(i) !== -1}"
-          (click)=passIndex(i)
-          *ngFor="let actor of movie.actors; let i=index;">
-          {{ actor.name }} {{ actor.second_name}} {{ actor.surname }}
-        </li>
-      </ul>
-    </div>
+<br>
+<br>
+<hr>
+<hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ movie.title }}, <span class="movie__year">{{movie.year}}</span> </h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-6">
+    <h5 class="badge movie__genre" *ngFor="let genre of movie.genre"> {{genre}}</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6">
+    <h4> <span class="director_by">by</span> {{ movie.director }} </h4>
+  </div>
+  <img [src]="movie.imagePath" alt="{{ movie.name }}" class="img-responsive">
+  </div>
+
+<div class="row">
+  <div class="col-xs-6">
+    {{ movie.plot }}
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-4 col-offset-1">
+    <ul class="list-group">
+      <li style="cursor: pointer;" class="list-group-item clearfix" [ngClass]="{active : this.idsOfActors.indexOf(i) !== -1}" (click)=passIndex(i)
+        *ngFor="let actor of movie.actors; let i=index;">
+        {{ actor.name }} {{ actor.second_name}} {{ actor.surname }}
+      </li>
+    </ul>
+        <button class="btn btn-primary" (click)="onAddFavActorsToNewTab(idsOfActors)"> Add To Favourites </button>
 
   </div>
+
 </div>

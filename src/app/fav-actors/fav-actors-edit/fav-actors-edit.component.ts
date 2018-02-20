@@ -26,7 +26,9 @@ export class FavActorsEditComponent implements OnInit, OnDestroy {
           this.editMode = true;
           this.editedItem = this.favActorsService.getFavActor(index);
           this.favActorsForm.setValue({
-            name: this.editedItem.name
+            name: this.editedItem.name,
+            surname: this.editedItem.surname,
+            second_name: this.editedItem.second_name || ''
                     })
         }
       );
@@ -38,10 +40,12 @@ export class FavActorsEditComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       this.favActorsService.updateActor(this.editedItemIndex, newActor);
     } else {
-      this.favActorsService.addActor(newActor);
+      this.favActorsService.addFavActors(newActor);
     }
     this.editMode = false;
+
     form.reset();
+ console.log("form ", form);
   }
 
   onClear() {

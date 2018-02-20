@@ -41,7 +41,6 @@ export class MovieDetailComponent implements OnInit {
       } else {
        this.idsOfActors.splice(check, 1);
       }
-     console.log("idsOfActors ", this.idsOfActors);
 
    }
 

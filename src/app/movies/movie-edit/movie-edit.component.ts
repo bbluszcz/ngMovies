@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-
+// services
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -43,16 +43,15 @@ export class MovieEditComponent implements OnInit {
     (<FormArray>this.movieForm.get('actors')).push(
       new FormGroup({
         'name': new FormControl(null, Validators.required),
-        'role': new FormControl(null, [
+        'surname': new FormControl(null, [
           Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
         ])
       })
     );
   }
 
   onDeleteActor(index: number) {
-    (<FormArray>this.movieForm.get('actorss')).removeAt(index);
+    (<FormArray>this.movieForm.get('actors')).removeAt(index);
   }
 
   onCancel() {
@@ -64,37 +63,55 @@ export class MovieEditComponent implements OnInit {
   }
 
   private initForm() {
+    let movieIndex: number;
     let movieTitle = '';
+    let movieDirector = '';
+    let movieYear: number;
     let movieImagePath = '';
-    let movieDescription = '';
+    let moviePlot = '';
     const movieActors = new FormArray([]);
+    const movieGenres = new FormArray([]);
 
     if (this.editMode) {
       const movie = this.movieService.getMovie(this.id);
+      movieIndex = movie.index;
       movieTitle = movie.title;
       movieImagePath = movie.imagePath;
-      movieDescription = movie.plot;
+      moviePlot = movie.plot;
+      movieDirector = movie.director;
+      movieYear = movie.year;
+
       if (movie['actors']) {
         for (const actor of movie.actors) {
           movieActors.push(
             new FormGroup({
               'name': new FormControl(actor.name, Validators.required),
-              'surname': new FormControl(actor.surname, Validators.required
-              //   [
-              //   Validators.required,
-              //   Validators.pattern(/^[1-9]+[0-9]*$/)
-              // ]
-            )
+              'surname': new FormControl(actor.surname, Validators.required),
+              'second_name': new FormControl(actor.surname)
             })
           );
         }
       }
+      if (movie['genres']) {
+        for (const genre of movie.genre) {
+          movieGenres.push(
+            new FormGroup({
+              'genre': new FormControl(genre),
+            })
+          );
+        }
+      }
+
     }
 
     this.movieForm = new FormGroup({
+      'index': new FormControl(movieIndex),
       'title': new FormControl(movieTitle, Validators.required),
-      'imagePath': new FormControl(movieImagePath, Validators.required),
-      'description': new FormControl(movieDescription, Validators.required),
+      'director': new FormControl(movieDirector, Validators.required),
+      'year': new FormControl(movieYear, Validators.required),
+      'genres': new FormControl(movieGenres),
+      'imagePath': new FormControl(movieImagePath),
+      'plot': new FormControl(moviePlot),
       'actors': movieActors
     });
   }

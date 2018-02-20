@@ -6,7 +6,7 @@
         right: 0;
         width: 50%;
         max-height: 650px;
-    
+
     }
     .list-group{
         .list-group-item{
@@ -18,4 +18,18 @@
         cursor: pointer;
         margin-right: 17px;
     }
+
+    .movie__genre{
+        margin: 0 2px;
+    }
+
+    .movie__year{
+        color: gray;
+        font-size: 18px;
+    }
+    .director_by{
+        color: gray;
+        font-size: 12px;
+    }
+
 }

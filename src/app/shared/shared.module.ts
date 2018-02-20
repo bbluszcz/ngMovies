@@ -16,7 +16,7 @@ import { DropdownDirective } from './dropdown.directive';
   exports: [
     CommonModule,
     DropdownDirective,
-     DropdownFilterPipe,
+    DropdownFilterPipe,
     InputFilterPipe
   ],
 })

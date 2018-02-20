@@ -6,7 +6,20 @@ import { Pipe, PipeTransform, Input } from '@angular/core';
 
 export class DropdownFilterPipe implements PipeTransform {
     transform(value: any[], filter: string): any[] {
-        return filter ? value.filter((product: any) =>
-            product.genre.indexOf(filter) !== -1) : value;
+        return filter ? value.filter(
+            (arraySearched: any[]) =>
+        this.selectedFilter(arraySearched, filter))
+         : value;
     }
+
+
+    selectedFilter(arraySearched, filter) {
+        if (filter === 'All') {
+            return arraySearched;
+        } else {
+            return (arraySearched['genre'].indexOf(filter) !== -1);
+        }
+    }
+
+
 }

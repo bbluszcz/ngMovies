@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="col-sm-3 form-group">
           <label for="name">Name</label>
           <input
             type="text"
@@ -13,14 +13,25 @@
             required
           >
         </div>
-        <div class="col-sm-2 form-group">
-          <label for="role">Role</label>
+        <div class="col-sm-3 form-group">
+          <label for="surname">Surname</label>
           <input
             type="text"
-            id="role"
+            id="surname"
             class="form-control"
-            name="role"
+            name="surname"
+            ngModel
            required
+          >
+        </div>
+        <div class="col-sm-3 form-group">
+          <label for="second_name">Second name (optional) </label>
+          <input
+            type="text"
+            id="second_name"
+            class="form-control"
+            name="second_name"
+            ngModel
           >
         </div>
       </div>

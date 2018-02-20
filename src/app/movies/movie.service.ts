@@ -16,6 +16,8 @@ export class MovieService {
   searchType = new Subject<number>();
   id: number;
 
+  private genres = ['All', 'Drama', 'Crime', 'Western', 'Comedy', 'Thriller', 'Adventure', 'Action', 'Sci-Fi'];
+
   private movies: Movie[] = [
     new Movie(
       0,
@@ -147,6 +149,10 @@ export class MovieService {
 
   getMovies() {
     return this.movies.slice();
+  }
+
+  getGenres() {
+    return this.genres.slice();
   }
 
   getMovie(index: number) {

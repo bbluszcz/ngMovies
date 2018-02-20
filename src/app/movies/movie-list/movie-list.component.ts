@@ -14,9 +14,12 @@ import { MovieService } from './../movie.service';
 })
 export class MovieListComponent implements OnInit, OnDestroy {
   @ViewChild('searchType') select: ElementRef;
-  searchType= 0;  // setting the searchType to All 
+  searchType= 0;  // setting the searchType to All
   movies: Movie[];
+  genres: any[];
   subscription: Subscription;
+  listFilter: string;
+  ddListFilter = '';
 
       constructor(private movieService: MovieService,
               private router: Router,
@@ -31,11 +34,12 @@ export class MovieListComponent implements OnInit, OnDestroy {
         }
       );
     this.movies = this.movieService.getMovies();
-    console.log(this.movies[0]['actors'][0]['surname']);
+    this.genres = this.movieService.getGenres();
+    this.ddListFilter = 'All';
+  }
 
-    // searchbar
-
-
+  onClearSearch() {
+    this.listFilter = '';
   }
 
   onNewMovie() {

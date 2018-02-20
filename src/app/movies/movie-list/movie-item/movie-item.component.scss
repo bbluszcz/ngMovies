@@ -6,6 +6,7 @@
         font-size: 15px;
         color: gray;
     }
+
     &__genre{
         margin: 0 2px;
     }
@@ -29,3 +30,10 @@
   .container {
         width: 95%;
     }
+
+
+    a.list-group-item{
+        &:focus .movie__year, &:active .movie__year {
+            color: rgb(219, 233, 219);
+    }
+}
