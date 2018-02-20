@@ -14,6 +14,7 @@ export class MovieService {
   favActors: Actor[];
 
   searchType = new Subject<number>();
+  sortBy = new Subject<number>();
   id: number;
 
   private genres = ['All', 'Drama', 'Crime', 'Western', 'Comedy', 'Thriller', 'Adventure', 'Action', 'Sci-Fi'];
@@ -187,9 +188,20 @@ export class MovieService {
 // search box - pipes methods
   sendSearchType(id: number) {
     this.searchType.next(id);
+    console.log(" searchType w servisie wysyla ", this.searchType);
+
   }
 
   getSearchType(): Observable<number> {
     return this.searchType.asObservable();
+  }
+
+// sorting - pipes methods
+  sendSortBy(id: number) {
+    this.sortBy.next(id);
+  }
+
+  getSortBy(): Observable<number> {
+    return this.sortBy.asObservable();
   }
 }

@@ -8,7 +8,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'movies', loadChildren: './movies/movies.module#MoviesModule'},
   { path: 'favourite-actors', component: FavActorsComponent },
-  { path: 'favourite-actors', component: FavActorsComponent },
+  
 ];
 
 @NgModule({

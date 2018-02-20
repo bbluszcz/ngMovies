@@ -4,7 +4,11 @@
     }
     &__year{
         font-size: 15px;
-        color: gray;
+        // color: gray;
+        // &:active, &:focus{
+        // color: lightgray;
+        // }
+
     }
 
     &__genre{
@@ -33,7 +37,7 @@
 
 
     a.list-group-item{
-        &:focus .movie__year, &:active .movie__year {
+        &:focus .movie__year, &:active .movie__year, &:focus-within .movie__year {
             color: rgb(219, 233, 219);
     }
 }

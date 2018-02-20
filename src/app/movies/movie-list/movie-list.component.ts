@@ -13,13 +13,16 @@ import { MovieService } from './../movie.service';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit, OnDestroy {
-  @ViewChild('searchType') select: ElementRef;
-  searchType= 0;  // setting the searchType to All
+  @ViewChild('searchType') selectSearchType: ElementRef;
+  @ViewChild('sortBy') selectSortBy: ElementRef;
+  searchType= 0;  // setting the searchType to 'All'
+  sortBy = 0;   // setting the sortBy to 'year-desc'
   movies: Movie[];
   genres: any[];
   subscription: Subscription;
   listFilter: string;
   ddListFilter = '';
+  sortByFilter = '';
 
       constructor(private movieService: MovieService,
               private router: Router,
@@ -36,6 +39,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.movies = this.movieService.getMovies();
     this.genres = this.movieService.getGenres();
     this.ddListFilter = 'All';
+    this.sortByFilter = 'year-asc'
+
   }
 
   onClearSearch() {
@@ -47,9 +52,15 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
 
-  onChange() {
-    this.searchType = this.select.nativeElement.options.selectedIndex;
+  onChangeDropdown() {
+    this.searchType = this.selectSearchType.nativeElement.options.selectedIndex;
     this.movieService.sendSearchType(this.searchType);
+    this.onClearSearch();
+  }
+
+  onChangeSort() {
+    this.sortBy = this.selectSortBy.nativeElement.options.selectedIndex;
+    this.movieService.sendSortBy(this.sortBy);
   }
 
 

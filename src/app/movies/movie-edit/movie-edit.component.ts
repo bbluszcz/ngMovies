@@ -43,9 +43,8 @@ export class MovieEditComponent implements OnInit {
     (<FormArray>this.movieForm.get('actors')).push(
       new FormGroup({
         'name': new FormControl(null, Validators.required),
-        'surname': new FormControl(null, [
-          Validators.required,
-        ])
+        'surname': new FormControl(null, Validators.required),
+        'second_name': new FormControl(null),
       })
     );
   }
@@ -58,8 +57,12 @@ export class MovieEditComponent implements OnInit {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 
-  getControls() {
+  getActorsControls() {
     return (<FormArray>this.movieForm.get('actors')).controls;
+  }
+
+  getGenresControls() {
+    return (<FormArray>this.movieForm.get('genres')).controls;
   }
 
   private initForm() {
@@ -87,33 +90,44 @@ export class MovieEditComponent implements OnInit {
             new FormGroup({
               'name': new FormControl(actor.name, Validators.required),
               'surname': new FormControl(actor.surname, Validators.required),
-              'second_name': new FormControl(actor.surname)
+              'second_name': new FormControl(actor.second_name)
             })
           );
         }
       }
       if (movie['genres']) {
-        for (const genre of movie.genre) {
+        for (const genre of movie.genres) {
           movieGenres.push(
-            new FormGroup({
-              'genre': new FormControl(genre),
-            })
-          );
+           new FormControl(genre),
+            )
         }
       }
-
     }
 
-    this.movieForm = new FormGroup({
-      'index': new FormControl(movieIndex),
-      'title': new FormControl(movieTitle, Validators.required),
-      'director': new FormControl(movieDirector, Validators.required),
-      'year': new FormControl(movieYear, Validators.required),
-      'genres': new FormControl(movieGenres),
-      'imagePath': new FormControl(movieImagePath),
-      'plot': new FormControl(moviePlot),
-      'actors': movieActors
-    });
-  }
+        if (this.editMode) {
+            this.movieForm = new FormGroup({
+              'index': new FormControl(movieIndex),
+              'title': new FormControl(movieTitle, Validators.required),
+              'director': new FormControl(movieDirector, Validators.required),
+              'year': new FormControl(movieYear, Validators.required),
+              'genres': movieGenres,
+              'imagePath': new FormControl(movieImagePath),
+              'plot': new FormControl(moviePlot),
+              'actors': movieActors
+            });
+        } else {
+          this.movieForm = new FormGroup({
+            'index': new FormControl(this.movieService.getMovies().length + 1),
+            'title': new FormControl(movieTitle, Validators.required),
+            'director': new FormControl(movieDirector, Validators.required),
+            'year': new FormControl(movieYear, Validators.required),
+            'genres': movieGenres,
+            'imagePath': new FormControl(movieImagePath),
+            'plot': new FormControl(moviePlot),
+            'actors': movieActors
+          });
+        }
 
+
+  }
 }
