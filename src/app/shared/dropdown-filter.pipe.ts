@@ -17,7 +17,7 @@ export class DropdownFilterPipe implements PipeTransform {
         if (filter === 'All') {
             return arraySearched;
         } else {
-            return (arraySearched['genre'].indexOf(filter) !== -1);
+            return (arraySearched['genres'].indexOf(filter) !== -1);
         }
     }
 

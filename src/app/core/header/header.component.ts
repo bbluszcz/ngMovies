@@ -20,10 +20,17 @@ export class HeaderComponent {
           console.log(response);
         }
       );
+    this.dataStorageService.storeFavActors()
+      .subscribe(
+        (response: Response) => {
+          console.log(response);
+        }
+      );
   }
 
   onFetchData() {
     this.dataStorageService.getMovies();
+    this.dataStorageService.getFavActors();
   }
 
   onLogout() {

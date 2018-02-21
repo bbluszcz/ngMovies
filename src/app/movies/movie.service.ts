@@ -14,9 +14,10 @@ export class MovieService {
   favActors: Actor[];
 
   searchType = new Subject<number>();
+  sortBy = new Subject<number>();
   id: number;
 
-  private genres = ['All', 'Drama', 'Crime', 'Western', 'Comedy', 'Thriller', 'Adventure', 'Action', 'Sci-Fi'];
+  private genres = ['All', 'Action', 'Adventure',  'Comedy',  'Crime', 'Drama', 'Fantasy', 'Sci-Fi', 'Thriller', 'Western'];
 
   private movies: Movie[] = [
     new Movie(
@@ -155,18 +156,20 @@ export class MovieService {
     return this.genres.slice();
   }
 
-  getMovie(index: number) {
-    return this.movies[index];
+  getMovie(id: number) {
+    const  index = this.movies.findIndex(x => x.index === id);
+    return  this.movies.slice()[index];
   }
 
   addFavActorsToNewTab(actor: Actor) {
-  // check if actor already exists
-    this.favActors = this.favActorsService.getFavActors();
-     if (this.favActors.indexOf(actor) === -1) {
-       this.favActorsService.addFavActors(actor);
-     }
-    // for (const i of this.favActors) {this.favActorsService.getFavActor()}
+// check if actor already exists in fav actors
 
+    this.favActors = this.favActorsService.getFavActors();
+
+    if ((this.favActors.map(e => e.surname).indexOf(actor.surname) === -1) &&
+         (this.favActors.map(e => e.name).indexOf(actor.name) === -1))  {
+         this.favActorsService.addFavActors(actor);
+       }
   }
 
   addMovie(movie: Movie) {
@@ -187,9 +190,19 @@ export class MovieService {
 // search box - pipes methods
   sendSearchType(id: number) {
     this.searchType.next(id);
+
   }
 
   getSearchType(): Observable<number> {
     return this.searchType.asObservable();
+  }
+
+// sorting - pipes methods
+  sendSortBy(id: number) {
+    this.sortBy.next(id);
+  }
+
+  getSortBy(): Observable<number> {
+    return this.sortBy.asObservable();
   }
 }

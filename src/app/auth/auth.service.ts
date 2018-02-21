@@ -1,3 +1,4 @@
+import { Observable } from "rxjs/Observable";
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
@@ -5,11 +6,21 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
   token: string;
+  errorMsg: Observable<string>;
 
   constructor(private router: Router) {}
 
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(
+          response => {
+            this.router.navigate(['/movies']);
+            firebase.auth().currentUser.getToken()
+              .then(
+                (token: string) => this.token = token
+              )
+          }
+        )
       .catch(
         error => console.log(error)
       )
@@ -19,7 +30,7 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/movies']);
           firebase.auth().currentUser.getToken()
             .then(
               (token: string) => this.token = token
@@ -27,7 +38,10 @@ export class AuthService {
         }
       )
       .catch(
-        error => console.log(error)
+        error => {
+        console.log(error);
+        this.errorMsg = error;
+        }
       );
   }
 

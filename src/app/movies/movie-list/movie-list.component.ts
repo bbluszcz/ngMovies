@@ -1,3 +1,4 @@
+import { AuthService } from "./../../auth/auth.service";
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,15 +14,19 @@ import { MovieService } from './../movie.service';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit, OnDestroy {
-  @ViewChild('searchType') select: ElementRef;
-  searchType= 0;  // setting the searchType to All
+  @ViewChild('searchType') selectSearchType: ElementRef;
+  @ViewChild('sortBy') selectSortBy: ElementRef;
+  searchType= 0;  // setting the searchType to 'All'
+  sortBy = 0;   // setting the sortBy to 'year-desc'
   movies: Movie[];
   genres: any[];
   subscription: Subscription;
   listFilter: string;
   ddListFilter = '';
+  sortByFilter = '';
 
       constructor(private movieService: MovieService,
+        private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute) {
   }
@@ -36,6 +41,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.movies = this.movieService.getMovies();
     this.genres = this.movieService.getGenres();
     this.ddListFilter = 'All';
+    this.sortByFilter = 'year-asc'
   }
 
   onClearSearch() {
@@ -46,12 +52,20 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-
-  onChange() {
-    this.searchType = this.select.nativeElement.options.selectedIndex;
+  onChangeDropdown() {
+    this.searchType = this.selectSearchType.nativeElement.options.selectedIndex;
     this.movieService.sendSearchType(this.searchType);
+    this.onClearSearch();
   }
 
+  onChangeSort() {
+    this.sortBy = this.selectSortBy.nativeElement.options.selectedIndex;
+    this.movieService.sendSortBy(this.sortBy);
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

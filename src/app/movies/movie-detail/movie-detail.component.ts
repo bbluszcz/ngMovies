@@ -1,3 +1,4 @@
+import { AuthService } from "./../../auth/auth.service";
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -20,7 +21,8 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(private movieService: MovieService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -28,7 +30,6 @@ export class MovieDetailComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.idOfMovie = +params['id'];
-          this.titleOfMovie = params['title'];
           this.movie = this.movieService.getMovie(this.idOfMovie);
         }
       );
@@ -58,6 +59,10 @@ export class MovieDetailComponent implements OnInit {
   onDeleteMovie() {
     this.movieService.deleteMovie(this.idOfMovie);
     this.router.navigate(['/movies']);
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 
 }

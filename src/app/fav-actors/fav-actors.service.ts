@@ -24,6 +24,11 @@ export class FavActorsService {
     this.favActorsChanged.next(this.favActors.slice());
   }
 
+  setFavActors(favActors: Actor[]) {
+    this.favActors = favActors;
+    this.favActorsChanged.next(this.favActors.slice());
+  }
+
   updateActor(index: number, newActor: Actor) {
     this.favActors[index] = newActor;
     this.favActorsChanged.next(this.favActors.slice());
