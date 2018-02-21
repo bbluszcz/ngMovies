@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!movieForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="director">Director</label>
+            <input type="text" id="director" formControlName="director" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12" >
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-3">
+                <label for="year">Production</label>
+                <input type="number" id="year" formControlName="year" class="form-control">
+              </div>
+              <div formArrayName="genres">
+                <div *ngFor="let genreCtrl of getGenresControls(); let i = index" class="col-xs-3">
+                  <label for="genre">Genre {{i+1}} </label>
+                  <input type="genre" type="dropdown" class="form-control" [formControlName]="i">
+                </div>
+                <!-- <div *ngIf="!editMode" class="col-xs-3">
+                  <label for="genre">Genre 1 </label>
+                  <input type="genre" type="dropdown" class="form-control" formControlName="0">
+                </div> -->
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button type="button" class="btn btn-success" (click)="onAddGenre()">Add Genre </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" id="imagePath" formControlName="imagePath" class="form-control" #imagePath>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="image-holder">
+            <img [src]="imagePath.value" class="img-responsive">
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="plot">Plot in a nutshell</label>
+            <textarea type="text" id="plot" class="form-control" formControlName="plot" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12" formArrayName="actors">
+
+          <div class="row" *ngFor="let actorCtrl of getActorsControls(); let i = index" [formGroupName]="i" style="margin-top: 10px;">
+            <div class="col-xs-4">
+              <label for="name">Name</label>
+              <input type="text" id="name" class="form-control" formControlName="name">
+            </div>
+            <div class="col-xs-4">
+              <label for="surname">Surname </label>
+              <input type="text" id="surname" class="form-control" formControlName="surname">
+            </div>
+            <div class="col-xs-3">
+              <label for="second_name"> Second name </label>
+              <input type="text" id="second_name" class="form-control" formControlName="second_name">
+            </div>
+            <div class="col-xs-1">
+              <button type="button" class="btn btn-danger" (click)="onDeleteActor(i)">X</button>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-success" (click)="onAddActor()">Add Actor</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
