@@ -8,6 +8,11 @@
         max-height: 650px;
 
     }
+
+     .well {
+            padding: 10px;
+             color: red;
+         }
     .list-group{
         .list-group-item{
             margin-bottom: 3px;
@@ -31,5 +36,13 @@
         color: gray;
         font-size: 12px;
     }
-
 }
+
+
+    .movie__detail{
+        margin-top: 72px;
+    }
+
+    .edit-buttons{
+        margin-bottom: 81px;
+    }

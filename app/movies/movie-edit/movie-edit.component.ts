@@ -13,6 +13,7 @@ export class MovieEditComponent implements OnInit {
   id: number;
   editMode = false;
   movieForm: FormGroup;
+  genres = [];
 
   constructor(private route: ActivatedRoute,
               private movieService: MovieService,
@@ -28,6 +29,8 @@ export class MovieEditComponent implements OnInit {
           this.initForm();
         }
       );
+    this.genres = this.movieService.getGenres();
+
   }
 
   onSubmit() {
@@ -37,7 +40,6 @@ export class MovieEditComponent implements OnInit {
       this.movieService.addMovie(this.movieForm.value);
     }
     this.onCancel();
-    console.log("this.movieForm  ", this.movieForm.value);
 
   }
 
@@ -53,8 +55,12 @@ export class MovieEditComponent implements OnInit {
 
   onAddGenre() {
     (<FormArray>this.movieForm.get('genres')).push(
-         new FormControl(null, Validators.required),
+         new FormControl(null),
     );
+  }
+
+  onDeleteGenre(index: number) {
+    (<FormArray>this.movieForm.get('genres')).removeAt(index);
   }
 
   onDeleteActor(index: number) {
@@ -124,8 +130,11 @@ export class MovieEditComponent implements OnInit {
               'actors': movieActors
             });
         } else {
+          console.log("getMovies() ", this.movieService.getMovies().map(x => x.index).sort()[5]  );
+          console.log(  'length', this.movieService.getMovies().length)
           this.movieForm = new FormGroup({
-            'index': new FormControl(this.movieService.getMovies().length),
+
+            'index': new FormControl(this.movieService.getMovies().map(x => x.index).sort()[this.movieService.getMovies().length - 1] + 1),
             'title': new FormControl(movieTitle, Validators.required),
             'director': new FormControl(movieDirector, Validators.required),
             'year': new FormControl(movieYear, Validators.required),
@@ -135,7 +144,6 @@ export class MovieEditComponent implements OnInit {
             'actors': movieActors
           });
 
- console.log("this.movieForm  ", this.movieForm.value );
         }
 
 

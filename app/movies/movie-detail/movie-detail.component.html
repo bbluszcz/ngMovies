@@ -1,50 +1,60 @@
 <div class="row">
   <div class="col-xs-12">
-    <button class="btn btn-danger pull-right" (click)="onDeleteMovie()">Delete Movie</button>
-    <button class="btn btn-secondary pull-right" (click)="onEditMovie()">Edit Movie</button>
-  </div>
-</div>
-<br>
-<br>
-<br>
-<hr>
-<hr>
+    <ng-template [ngIf]="isAuthenticated()">
+      <div class= "edit-buttons">
+          <button  class="btn btn-danger pull-right" (click)="onDeleteMovie()">Delete Movie</button>
+          <button  class="btn btn-secondary pull-right" (click)="onEditMovie()">Edit Movie</button>
+        </div>
+      </ng-template>
 
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{ movie.title }}, <span class="movie__year">{{movie.year}}</span> </h1>
+    <div *ngIf="!isAuthenticated()" class="well">
+      <h4>  Log in to be able to add, edit and delete movies or store data on the server</h4>
+    </div>
   </div>
 </div>
 
 
-<div class="row">
-  <div class="col-xs-6">
-    <h5 class="badge movie__genre" *ngFor="let genre of movie.genres"> {{genre}}</h5>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-6">
-    <h4> <span class="director_by">by</span> {{ movie.director }} </h4>
-  </div>
-  <img [src]="movie.imagePath" alt="{{ movie.name }}" class="img-responsive">
+<div class="movie__detail">
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{ movie.title }}, <span class="movie__year">{{movie.year}}</span> </h1>
+    </div>
   </div>
 
-<div class="row">
-  <div class="col-xs-6">
-    {{ movie.plot }}
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h5 class="badge movie__genre" *ngFor="let genre of movie.genres"> {{genre}}</h5>
+    </div>
   </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-xs-4 col-offset-1">
-    <ul class="list-group">
-      <li style="cursor: pointer;" class="list-group-item clearfix" [ngClass]="{active : this.idsOfActors.indexOf(i) !== -1}" (click)=passIndex(i)
-        *ngFor="let actor of movie.actors; let i=index;">
-        {{ actor.name }} {{ actor.second_name}} {{ actor.surname }}
-      </li>
-    </ul>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h4> <span class="director_by">by</span> {{ movie.director }} </h4>
+    </div>
+    <img [src]="movie.imagePath" alt="{{ movie.name }}" class="img-responsive">
+    </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <br>
+      <strong>Plot summary:</strong><br>
+      {{ movie.plot }}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-4 col-offset-1">
+      <ul class="list-group">
+        <li style="cursor: pointer;" class="list-group-item clearfix" [ngClass]="{active : this.idsOfActors.indexOf(i) !== -1}" (click)=passIndex(i)
+          *ngFor="let actor of movie.actors; let i=index;">
+          {{ actor.name }} {{ actor.second_name}} {{ actor.surname }}
+        </li>
+      </ul>
         <button class="btn btn-primary" (click)="onAddFavActorsToNewTab(idsOfActors)"> Add To Favourites </button>
+
+    </div>
 
   </div>
 

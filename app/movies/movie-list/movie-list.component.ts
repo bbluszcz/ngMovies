@@ -1,3 +1,4 @@
+import { AuthService } from "./../../auth/auth.service";
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,18 +14,22 @@ import { MovieService } from './../movie.service';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit, OnDestroy {
+
   @ViewChild('searchType') selectSearchType: ElementRef;
   @ViewChild('sortBy') selectSortBy: ElementRef;
   searchType= 0;  // setting the searchType to 'All'
   sortBy = 0;   // setting the sortBy to 'year-desc'
+
   movies: Movie[];
   genres: any[];
   subscription: Subscription;
+
   listFilter: string;
-  ddListFilter = '';
+  ddlistFilter = 'All'; // setting the genre gilter to 'All'
   sortByFilter = '';
 
       constructor(private movieService: MovieService,
+        private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute) {
   }
@@ -38,7 +43,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
       );
     this.movies = this.movieService.getMovies();
     this.genres = this.movieService.getGenres();
-    this.ddListFilter = 'All';
+    // this.ddlistFilter = 'All';
     this.sortByFilter = 'year-asc'
   }
 
@@ -59,6 +64,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
   onChangeSort() {
     this.sortBy = this.selectSortBy.nativeElement.options.selectedIndex;
     this.movieService.sendSortBy(this.sortBy);
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 
   ngOnDestroy() {

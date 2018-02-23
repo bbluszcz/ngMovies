@@ -45,7 +45,6 @@ export class FavActorsEditComponent implements OnInit, OnDestroy {
     this.editMode = false;
 
     form.reset();
- console.log("form ", form);
   }
 
   onClear() {

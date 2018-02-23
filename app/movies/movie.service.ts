@@ -17,7 +17,7 @@ export class MovieService {
   sortBy = new Subject<number>();
   id: number;
 
-  private genres = ['All', 'Drama', 'Crime', 'Western', 'Comedy', 'Thriller', 'Adventure', 'Action', 'Sci-Fi'];
+  private genres = ['All', 'Action', 'Adventure',  'Comedy',  'Crime', 'Drama', 'Fantasy', 'Sci-Fi', 'Thriller', 'Western'];
 
   private movies: Movie[] = [
     new Movie(
@@ -144,6 +144,10 @@ export class MovieService {
   constructor(private favActorsService: FavActorsService) {}
 
   setMovies(movies: Movie[]) {
+
+ console.log("movies z bazy ", this.movies);
+
+ console.log("movies z servera ", movies);
     this.movies = movies;
     this.moviesChanged.next(this.movies.slice());
   }
@@ -157,13 +161,15 @@ export class MovieService {
   }
 
   getMovie(id: number) {
-
     const  index = this.movies.findIndex(x => x.index === id);
-    return   this.movies[index]
+    return  this.movies.slice()[index];
   }
 
   addFavActorsToNewTab(actor: Actor) {
-  // check if actor already exists
+// check if actor already exists in fav actors
+
+    this.favActors = this.favActorsService.getFavActors();
+
     if ((this.favActors.map(e => e.surname).indexOf(actor.surname) === -1) &&
          (this.favActors.map(e => e.name).indexOf(actor.name) === -1))  {
          this.favActorsService.addFavActors(actor);
@@ -173,22 +179,26 @@ export class MovieService {
   addMovie(movie: Movie) {
     this.movies.push(movie);
     this.moviesChanged.next(this.movies.slice());
+    console.log("ater adding ", this.movies);
   }
 
   updateMovie(index: number, newMovie: Movie) {
-    this.movies[index] = newMovie;
+    const id = this.movies.findIndex(x => x.index === index);
+    this.movies[id] = newMovie;
     this.moviesChanged.next(this.movies.slice());
+    console.log("po edycji ", this.movies);
   }
 
   deleteMovie(index: number) {
-    this.movies.splice(index, 1);
+    const id = this.movies.findIndex(x => x.index === index);
+    this.movies.splice(id, 1);
     this.moviesChanged.next(this.movies.slice());
+     console.log("filmy po usunięciu ", this.movies);
   }
 
 // search box - pipes methods
   sendSearchType(id: number) {
     this.searchType.next(id);
-    console.log(" searchType w servisie wysyla ", this.searchType);
 
   }
 
