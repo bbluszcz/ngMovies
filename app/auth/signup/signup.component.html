@@ -1,23 +1,43 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  <div class="col-xs-12 col-sm-10 col-md-4 col-sm-offset-1 col-md-offset-4">
+   <br>
+    <br>
+  <div class="well"> Sign up now!</div>
+  <br>
 
-    <h3> Registration </h3>
     <form (ngSubmit)="onSignup(f)" #f="ngForm">
       <div class="form-group">
         <label for="email">Mail</label>
-        <input type="email" id="email" name="email" ngModel class="form-control">
+         <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-control"
+        ngModel
+        email
+        required
+         #email="ngModel">
+        <p *ngIf="email.invalid && email.touched" class="text-muted email-helper"> Invalid email address</p>
+
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input
+         <input
           type="password"
           id="password"
           name="password"
+          class="form-control"
           ngModel
-          class="form-control">
+          required
+          pattern="^.{6,20}$"
+          #password="ngModel"
+          >
+        <p *ngIf="password.invalid && password.touched" class="text-muted password-helper"> Password must cotain minimum <strong>6 characters</strong></p>
       </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>
+      <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>
   </div>
 </div>
+
+
 

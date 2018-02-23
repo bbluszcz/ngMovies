@@ -1,2 +1,5 @@
-<hr style="margin-top: 63px;">
-<h3>Select a movie from the database!</h3>
+<div style="margin-top: 151px;">
+    <hr>
+    <h2  *ngIf="isAuthenticated && !isLogout" >  Welcome <strong>{{currentUser }}</strong>!</h2>
+    <h3> Select a movie from the database!</h3>
+</div>

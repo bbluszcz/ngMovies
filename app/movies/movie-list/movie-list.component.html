@@ -3,7 +3,7 @@
     <div class="row">
       <div class="form-group ">
         <div class="col-md-4">
-          <button class="btn btn-primary btn-xl " (click)="onNewMovie()">New Movie</button>
+          <button  [disabled]="!isAuthenticated()" class="btn btn-primary btn-xl " (click)="onNewMovie()">New Movie</button>
         </div>
         <div class="col-md-6">
 <!-- searchbar -->
@@ -54,8 +54,7 @@
 <hr>
 <div class="row clearfix">
   <div class="col-md-12">
-    <app-movie-item *ngFor="let movie of movies | InputFilter: listFilter | DropdownFilter: ddlistFilter | 
-    Sort: sortByFilter; let i = index" [movie]="movie" [id]="movie.index">
+    <app-movie-item *ngFor="let movie of movies | InputFilter: listFilter | DropdownFilter:     ddlistFilter | Sort: sortByFilter; let i = index" [movie]="movie" [id]="movie.index">
     </app-movie-item>
   </div>
 </div>

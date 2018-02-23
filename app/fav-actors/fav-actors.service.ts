@@ -20,12 +20,15 @@ export class FavActorsService {
   }
 
   addFavActors(actor: Actor) {
-
-    console.log("fav actors service before ", this.favActors);
     this.favActors.push(actor);
     this.favActorsChanged.next(this.favActors.slice());
-    console.log("fav actors service after", this.favActors);
+  }
 
+  setFavActors(favActors: Actor[]) {
+    this.favActors = favActors;
+    this.favActorsChanged.next(this.favActors.slice());
+
+    console.log("setFavActors ", this.favActors);
   }
 
   updateActor(index: number, newActor: Actor) {

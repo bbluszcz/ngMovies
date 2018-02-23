@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 // my modules
@@ -12,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
     AuthRoutingModule
   ]
