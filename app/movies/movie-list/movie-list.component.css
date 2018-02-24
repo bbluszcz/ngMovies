@@ -1,8 +1,28 @@
-input{
-    padding-top: 5px;
-}
-.btn-xl{
-    padding: 10px 22px;
+
+
+@media (min-width: 650px) {
+    .btn-xl{
+        padding: 10px 22px;
+    }
 }
 
 
+@media (max-width: 450px) {
+    .col-xs-4{
+        padding-left:4px;
+        padding-right:4px;
+    }
+
+    .col-xs-offset-1 {
+        margin-left: 14.333333%;
+    }
+
+    .col-xs-offset-1 {
+        margin-left: 18.333333%;
+    }
+
+    button, input, select, option {
+    font-size: 1.2rem;
+}
+
+}

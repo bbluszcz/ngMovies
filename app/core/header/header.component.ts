@@ -7,7 +7,8 @@ import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit  {
 token: string;
@@ -16,10 +17,6 @@ token: string;
               private authService: AuthService) {
   }
   ngOnInit() {
-//     this.token = localStorage.getItem("token");
-//     if (this.token) { this.authService.token = this.token
-//      console.log("this.token ", this.token);
-//  }
   }
 
 
@@ -27,13 +24,11 @@ token: string;
     this.dataStorageService.storeMovies()
       .subscribe(
         (response: Response) => {
-          console.log(response);
         }
       );
     this.dataStorageService.storeFavActors()
       .subscribe(
         (response: Response) => {
-          console.log(response);
         }
       );
   }

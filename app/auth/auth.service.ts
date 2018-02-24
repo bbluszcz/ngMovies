@@ -60,7 +60,6 @@ export class AuthService {
   getCurrentUser(currentUser) {
     this.currentEmail = firebase.auth().currentUser.email;
     this.currentUser = this.currentEmail.substring(0, this.currentEmail.indexOf('@'));
-    console.log("this.currentUser ", this.currentUser);
 
   }
 
