@@ -2,18 +2,17 @@
   <div class="col-md-12">
     <div class="row">
       <div class="form-group ">
-        <div class="col-md-4">
-          <button  [disabled]="!isAuthenticated()" class="btn btn-primary btn-xl " (click)="onNewMovie()">New Movie</button>
+        <div class="col-xs-2 col-sm-3">
+          <button  [disabled]="!isAuthenticated()" class="btn btn-xl btn-primary " (click)="onNewMovie()">New Movie</button>
         </div>
-        <div class="col-md-6">
+        <div class=" col-xs-offset-1 col-xs-6 col-sm-6">
 <!-- searchbar -->
           <input [(ngModel)]="listFilter" name="search" id="search" class="form-control"
-          placeholder="search database...">
+          placeholder="search ...">
         </div>
 <!-- clear search button           -->
-        <div class="col-md-1">
-          <button class="btn btn-danger btn-l" (click)="onClearSearch()">x
-          </button>
+        <div class="col-xs-1 col-sm-1">
+          <button class="btn btn-danger btn-sm" (click)="onClearSearch()"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
@@ -21,7 +20,7 @@
   </div>
   <div class="col-md-12">
     <div class="row">
-      <div class="col-sm-4 form-group">
+      <div class="col-xs-4 form-group">
         <label for="sort">Sort by:</label>
 <!-- Sort -->
         <select name="sort" id="sort" class="form-control" [(ngModel)]="sortByFilter" (change)="onChangeSort()" #sortBy>
@@ -31,14 +30,14 @@
           <option value="title-asc"> &uarr;&nbsp; Title </option>
         </select>
       </div>
-      <div class="col-sm-4 form-group">
+      <div class="col-xs-4 form-group">
         <label for="genre">Genre filter:</label>
 <!-- genre dropdown -->
         <select id="genre" type="string" [(ngModel)]="ddlistFilter" class="form-control">
           <option *ngFor="let genre of genres; let i = index"> {{genre}}</option>
         </select>
       </div>
-      <div class="col-sm-4 form-group">
+      <div class="col-xs-4 form-group">
         <label for="searchType">Search by:</label>
 <!-- selected dropdown -->
         <select name="searchType" id="searchType" class="form-control " (change)="onChangeDropdown()" #searchType>
@@ -53,8 +52,9 @@
 </div>
 <hr>
 <div class="row clearfix">
-  <div class="col-md-12">
+  <div class="col-xs-12">
     <app-movie-item *ngFor="let movie of movies | InputFilter: listFilter | DropdownFilter:     ddlistFilter | Sort: sortByFilter; let i = index" [movie]="movie" [id]="movie.index">
     </app-movie-item>
+    <br>
   </div>
 </div>

@@ -11,7 +11,7 @@
         {{movie.year}}
       </span></h3>
       <h5
-      class="badge movie__genre"
+      class="badge movie__genre "
       *ngFor="let genre of movie.genres"> {{genre}}</h5>
       <h5
       class="movie__director"> <strong>Director: </strong> {{movie.director}}, </h5>
@@ -28,7 +28,7 @@
   <span class="img pull-right">
         <img
           [src]="movie.imagePath"
-          alt="{{ movie.name }}"
+          alt="{{ movie.imagePath }}"
           class="img-responsive">
       </span>
 </a>

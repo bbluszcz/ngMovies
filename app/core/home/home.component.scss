@@ -18,10 +18,15 @@ body{
         font-size: 25px;
         text-align: center;
         margin:10% 10% 20px;
-            }
+      & p  {
+         font-size: 15px;
+
+      }      
+      
+      }
     .btn {
         width: 200px;
-        margin: 10px 50px;
+        margin: 10px auto;
     }
 }
 
@@ -44,6 +49,7 @@ footer {
     text-transform: none;
     @include heading-font;
   }
+
   a {
     font-size: 90%;
     line-height: 40px;
@@ -58,6 +64,7 @@ footer {
       color: $primary;
       text-decoration: underline;
     }
+
   }
 }
 
@@ -91,3 +98,11 @@ ul.social-buttons {
     float: right;
   }
 }
+
+
+
+a.email.center {
+    @media (max-width: 400px) {
+        display: block;
+      }
+    }

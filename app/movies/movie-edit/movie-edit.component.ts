@@ -130,8 +130,6 @@ export class MovieEditComponent implements OnInit {
               'actors': movieActors
             });
         } else {
-          console.log("getMovies() ", this.movieService.getMovies().map(x => x.index).sort()[5]  );
-          console.log(  'length', this.movieService.getMovies().length)
           this.movieForm = new FormGroup({
 
             'index': new FormControl(this.movieService.getMovies().map(x => x.index).sort()[this.movieService.getMovies().length - 1] + 1),

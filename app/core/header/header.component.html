@@ -2,31 +2,59 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a routerLink="/" class="navbar-brand">
-          <span><img class="logo align-top" style="max-height: 20px; margin: 0 5px;" src="./../../../assets/favicon.png" alt="logo"></span>
-          Start
- </a>
+        <span>
+          <img class="logo align-top" style="max-height: 20px; margin: 0 5px;" src="./assets/favicon.png" alt="logo">
+        </span>
+        Start
+      </a>
+
+      <button type="button" class="navbar-toggle collapsed nav-toggle-button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/movies">Favourite movies</a></li>
-        <li routerLinkActive="active"><a routerLink="/favourite-actors">Favourite actors</a></li>
-
+        <li routerLinkActive="active">
+          <a routerLink="/movies">Favourite movies</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/favourite-actors">Favourite actors</a>
+        </li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <ng-template [ngIf]="!isAuthenticated()">
-          <li><a routerLink="/signup">Register</a></li>
-          <li><a routerLink="/signin">Log in</a></li>
+
+          <li>
+            <a routerLink="/signin">
+              <i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
+          </li>
+          <li>
+          <a routerLink="/signup">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i> Register
+          </a>
+        </li>
         </ng-template>
 
         <ng-template [ngIf]="isAuthenticated()">
-          <li><a style="cursor: pointer;" (click)="onSaveData()">Save data</a></li>
-          <li><a style="cursor: pointer;" (click)="onFetchData()">Retrieve data</a></li>
+          <li>
+            <a style="cursor: pointer;" (click)="onSaveData()">
+              <i class="fa fa-upload" aria-hidden="true"></i> Save data</a>
+          </li>
+          <li>
+            <a style="cursor: pointer;" (click)="onFetchData()">
+              <i class="fa fa-download" aria-hidden="true"></i>Retrieve data</a>
+          </li>
         </ng-template>
 
-          <li>
-            <a style="cursor: pointer;" (click)="onLogout()" *ngIf="isAuthenticated()">Logout</a>
-          </li>
+        <li>
+          <a style="cursor: pointer;" (click)="onLogout()" *ngIf="isAuthenticated()">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+        </li>
       </ul>
     </div>
   </div>

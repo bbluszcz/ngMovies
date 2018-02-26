@@ -41,3 +41,49 @@
             color: rgb(219, 233, 219);
     }
 }
+
+
+@media (max-width: 650px){
+    .movie {
+        max-width: 60%;
+    &__title{
+        font-size: 20px;
+
+    }
+    &__year{
+        font-size: 11px;
+        // color: gray;
+        // &:active, &:focus{
+        // color: lightgray;
+        // }
+
+    }
+    &__actors, &__director{
+        font-size: 11px;
+    }
+
+    &__genre{
+        font-size: 8px;
+        margin: 0 2px;
+    }
+}
+.list-group-item{
+    position: relative;
+        .img{
+        width: 40%;
+  .img-responsive{
+        height: 95%;
+        width: auto;
+        max-height: 150px;
+        max-width: 100px;
+        position: absolute;
+        overflow: hidden;
+        right: 1px;
+
+        top:1px;
+        }
+        }
+      
+}
+
+}

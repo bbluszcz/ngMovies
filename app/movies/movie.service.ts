@@ -28,7 +28,7 @@ export class MovieService {
       1994,
       // tslint:disable-next-line:max-line-length
       "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-      'http://1.fwcdn.pl/po/10/39/1039/7517880.3.jpg',
+      'https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_SY1000_CR0,0,673,1000_AL_.jpg',
       [
         new Actor('John', 'Travolta'),
         new Actor('Samuel', 'Jackson', 'L.'),
@@ -145,9 +145,6 @@ export class MovieService {
 
   setMovies(movies: Movie[]) {
 
- console.log("movies z bazy ", this.movies);
-
- console.log("movies z servera ", movies);
     this.movies = movies;
     this.moviesChanged.next(this.movies.slice());
   }
@@ -179,21 +176,18 @@ export class MovieService {
   addMovie(movie: Movie) {
     this.movies.push(movie);
     this.moviesChanged.next(this.movies.slice());
-    console.log("ater adding ", this.movies);
   }
 
   updateMovie(index: number, newMovie: Movie) {
     const id = this.movies.findIndex(x => x.index === index);
     this.movies[id] = newMovie;
     this.moviesChanged.next(this.movies.slice());
-    console.log("po edycji ", this.movies);
   }
 
   deleteMovie(index: number) {
     const id = this.movies.findIndex(x => x.index === index);
     this.movies.splice(id, 1);
     this.moviesChanged.next(this.movies.slice());
-     console.log("filmy po usunięciu ", this.movies);
   }
 
 // search box - pipes methods

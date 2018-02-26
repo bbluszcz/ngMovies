@@ -43,7 +43,7 @@
                     <input type="genre" type="dropdown" class="form-control" [formControlName]="i">
                   </div>
                   <div class="col-xs-1" style=" margin-top:25px; padding-right:10px; padding-left:2px;">
-                    <button type="button" class="btn btn-danger" (click)="onDeleteGenre(i)">X</button>
+                    <button type="button" class="btn btn-danger" (click)="onDeleteGenre(i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 <!-- <div *ngIf="!editMode" class="col-xs-3"> -->
@@ -111,7 +111,7 @@
               <input type="text" id="second_name" class="form-control" formControlName="second_name">
             </div>
             <div class="col-xs-1">
-              <button type="button" class="btn btn-danger" (click)="onDeleteActor(i)">X</button>
+              <button type="button" class="btn btn-danger" (click)="onDeleteActor(i)"><i class="fa fa-trash" aria-hidden="true"></i>search</button>
             </div>
           </div>
           <hr>

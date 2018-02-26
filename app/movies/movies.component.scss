@@ -1,0 +1,21 @@
+.xl-left-xs-bottom{
+    float:right;
+}
+
+
+.xl-right-xs-top{
+    float:right;
+}
+
+
+@media (max-width: 891px){
+
+    .xl-right-xs-top{
+        float:left;
+}
+        .xl-left-xs-bottom{
+        float:left;
+    }
+
+
+}

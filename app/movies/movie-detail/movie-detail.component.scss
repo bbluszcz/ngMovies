@@ -4,8 +4,8 @@
     .img-responsive{
         position: absolute;
         right: 0;
-        width: 50%;
         max-height: 650px;
+        max-width: 23vw;
 
     }
 
@@ -28,6 +28,14 @@
         margin: 0 2px;
     }
 
+    .movie__detail{
+        margin-top: 72px;
+    }
+    
+    .edit-buttons{
+        margin-bottom: 81px;
+    }
+
     .movie__year{
         color: gray;
         font-size: 18px;
@@ -36,13 +44,23 @@
         color: gray;
         font-size: 12px;
     }
+
+    .add-to-favourites-btn, hr{
+        margin-bottom: 1rem;
+    }
+    
+    @media (max-width: 890px){
+        .img-responsive{
+            max-width: 43vw;
+        }
+    }
+
+      @media (min-width: 890px){
+          .header{
+         margin-bottom: 30px;
+    }
+    }
+
+ 
 }
 
-
-    .movie__detail{
-        margin-top: 72px;
-    }
-
-    .edit-buttons{
-        margin-bottom: 81px;
-    }
